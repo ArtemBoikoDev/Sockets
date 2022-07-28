@@ -10,16 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/morning")
 public class HelloServlet extends HttpServlet {
-    private String message;
+    private String name;
+    private String mood;
 
     public void init() {
-        message = "my friend";
+        name = "my friend";
+        mood = "ok";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = Optional.ofNullable(request.getParameter("name"))
-                              .orElse(message);
+        String name = Optional.ofNullable(request.getParameter("name")).orElse(this.name);
+        String mood = Optional.ofNullable(request.getHeader("X-Mood")).orElse(this.mood);
         PrintWriter out = response.getWriter();
-        out.println("Hello, " + name);
+        out.println("Hello, " + name + ". You are feeling: " + mood);
     }
 }

@@ -29,6 +29,7 @@ public class Client {
 
         writer.println("GET /morning?name=Artem HTTP/1.1");
         writer.println("Host: " + hostAddress);
+        writer.println("X-Mood: amazing");
         writer.println(); // mandatory
 
         writer.flush();
