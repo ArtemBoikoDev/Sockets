@@ -12,8 +12,8 @@ public class Server {
         try (ServerSocket serverSocket = new ServerSocket(8080)) {
             while (true) {
                 Socket client = serverSocket.accept();
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(client.getInputStream()));
+                InputStreamReader in = new InputStreamReader(client.getInputStream());
+                BufferedReader reader = new BufferedReader(in);
                 reader.lines().forEach(System.out::println);
             }
         } catch (RuntimeException e) {

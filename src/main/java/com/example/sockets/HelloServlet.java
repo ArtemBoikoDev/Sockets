@@ -17,7 +17,8 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = Optional.ofNullable(request.getParameter("name")).orElse(message);
+        String name = Optional.ofNullable(request.getParameter("name"))
+                              .orElse(message);
         PrintWriter out = response.getWriter();
         out.println("Hello, " + name);
     }
